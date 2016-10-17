@@ -2,13 +2,11 @@ import config
 import datetime
 from flask import Flask, request, render_template, send_from_directory, redirect
 from forms import UserTextField
-import pyqrcode
 from pyqrcode import QRCode
 
 
 app = Flask(__name__)
 app.config.from_object(config)
-
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -22,7 +20,6 @@ def home():
             qr_code.png(qr_file_name, scale=5)
             if form.data['mode'] == 'download':
                 return redirect(qr_file_name)
-
     else:
         form = UserTextField()
 
