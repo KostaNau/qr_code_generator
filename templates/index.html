@@ -1,0 +1,27 @@
+{% extends '_base_template.html' %}<html lang="en">
+{% block content %}
+    <div class="content">
+        {% from "macros/render_field.html" import render_field %}
+        <form method="POST" action="{{ url_for('home') }}">
+            {{ form.hidden_tag() }}
+                <dl>
+                {% for field in form %}
+                    {% if field.id != 'csrf_token' %}
+                        {{ render_field(field) }}
+                    {% endif %}
+                {% endfor %}
+                </dl>
+
+                <input type="submit" value="{{ 'Submit' }}" class="btn">
+    </form>
+
+        <div class="link">
+        {%  if link %}
+             <p>Your QRCode is <a href="{{ link }}">here</p>
+        {% endif %}
+        </div>
+        {% endblock %}
+    </div>
+</body>
+</html>
+
